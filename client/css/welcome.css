@@ -14,8 +14,14 @@
     */
 }
 .center-options {
-    background-color: #232531;
     text-align: center;
+    padding-top: 10%;
+}
+.center-options > a{
+	text-decoration:none!important;
+}
+.center-options > a:hover{
+	text-decoration:none!important;
 }
 .center-options h3 {
     color: white;
@@ -24,4 +30,11 @@
 .side-tag i {
     color: #232531!important;
     font-size: 1.5em;
+}
+.welcome{
+	 background-color: #232531;
+	 height:100vh;
+	 margin: 0;
+   padding: 0;
+   text-align: center;
 }

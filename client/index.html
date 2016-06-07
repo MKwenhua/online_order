@@ -1,18 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Empty HTML</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-  <link rel="stylesheet" href="">
-  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
- 
-  
-
-</head>
-<body>
-
-
-</body>
-<script src=""></script>
+<html lang="en" ng-app="app" ng-cloak>
+   <head>
+      <title>Dry Clean</title>
+      <link rel="icon" type="image/png" href="icon.png"/>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+      <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+      <link rel="stylesheet" href="dist/app.css">
+   </head>
+   <body>
+      <div class="load-block ng-hide">
+         <div class="loader">Loading...</div>
+      </div>
+      
+         <div ui-view></div>
+    
+   </body>
+   <!-- below is all of the JS files -->
+   <script src="dist/bundle.js"></script>
 </html>
