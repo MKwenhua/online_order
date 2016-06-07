@@ -1,0 +1,23 @@
+@media only screen and (max-width: 550px) {
+    input[type="date"].form-control {
+        font-size: 14px;
+    }
+    .form-holder {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    hr {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    .footer {
+        margin-top: 20px;
+        position: absolute;
+        height: 100px;
+        top: 550px;
+    }
+    .col-change {
+        margin-top: -10px;
+        width: 83.33333333%;
+    }
+}

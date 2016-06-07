@@ -1,0 +1,27 @@
+.side-tag {
+    background-color: #26debd;
+    height: 45px;
+    width: 45px;
+    text-align: center;
+    padding: 12px;
+    position: absolute;
+    right: 45px;
+    margin-right: -40px;
+    margin-top: -11px;
+    /* 
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px; 
+    */
+}
+.center-options {
+    background-color: #232531;
+    text-align: center;
+}
+.center-options h3 {
+    color: white;
+    margin-bottom: 15px;
+}
+.side-tag i {
+    color: #232531!important;
+    font-size: 1.5em;
+}

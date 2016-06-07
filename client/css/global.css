@@ -1,0 +1,120 @@
+html {
+    height: 100%;
+    box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+body {
+    position: relative;
+    margin: 0;
+    min-height: 100%;
+    font-family: 'proxima_nova_softregular', Arial, sans-serif;
+    color: #525252;
+    /*background: #f3f3f3; */
+}
+hr {
+    margin-top: 40px;
+    margin-bottom: 30px;
+    border: 0;
+    border-top: 1px solid #dce0e0;
+}
+[class*="col-"] {
+    padding-right: 8px;
+    padding-left: 8px;
+}
+option {
+    font-weight: normal;
+    display: block;
+    white-space: pre;
+    min-height: 1.2em;
+    padding: 0px 2px 1px;
+    margin-left: 5px;
+}
+input {
+    border: 1px solid #bbb;
+    color: #3d4351;
+}
+input[type=text]:valid {
+    border: 2px solid #26debd;
+}
+input[type=text]:invalid {
+    border: 1px solid #ccc;
+}
+input[type="date"] {
+    text-align: center;
+}
+/*
+input[type="date"]:after{
+border: 2px solid  #26debd;
+}*/
+
+input[type="date"].form-control {
+    font-size: 16px;
+    padding: 6px 12px;
+}
+input[type="date"]::-webkit-inner-spin-button {
+    display: none;
+}
+input[type="date"]::-webkit-calendar-picker-indicator {
+    opacity: 0;
+}
+input[type="date"]:before {
+    /* content: "\f078";
+font: normal normal normal 24px/1 FontAwesome;
+  */
+    
+    content: "\f107";
+    font: bold 30px FontAwesome;
+    display: inline-block;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    position: absolute;
+    right: 30px;
+    top: 55%;
+    /* transform:translateY(-50%); */
+}
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding: 20px;
+    padding: 8px 10px;
+    width: 100%;
+    border: 1px solid #c4c4c4;
+    border-radius: 2px;
+    background-color: #fff;
+    color: #3d4351;
+    cursor: pointer;
+    text-align-last: center;
+}
+label {
+    color: #737373;
+    margin-bottom: 0px;
+    font-weight: 200;
+    font-size: 11px;
+}
+p {
+    color: #565a5c;
+}
+textarea {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    resize: vertical;
+    line-height: inherit;
+}
+.footer {
+    margin-top: 100px;
+    color: #26debd;
+    padding: 15px;
+    position: relative;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 150px;
+    background-color: #575757;
+}

@@ -1,0 +1,20 @@
+.opts-butt {
+    text-align: center;
+    border: 1px solid #26debd;
+    /*border-radius: 3px; */
+    margin-bottom: 8px;
+    color: #26debd!important;
+    cursor: pointer;
+    width: 100%;
+    display: block;
+    padding: 10px;
+    height: 45px;
+}
+.opts-butt a {
+    text-decoration: none;
+    color: #26debd!important;
+}
+.opts-butt a:hover {
+    text-decoration: none;
+    color: #26debd!important;
+}
