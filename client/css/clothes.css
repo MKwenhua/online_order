@@ -1,0 +1,66 @@
+.laundry {
+    background-color: #fff;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    color: #525252;
+    text-align: center;
+}
+.tap-ui {} .cost-per {
+    font-weight: 500;
+    margin-right: 10px;
+}
+.clothes-item {
+    /* border: 1px solid #dce0e0; */
+    
+    border-bottom: 1px solid #dce0e0;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    text-align: justify;
+    padding: 2px;
+}
+.clothes-item > span {
+    margin-left: 4px;
+}
+.clothes-type-butt {
+    background-color: #26debd;
+    cursor: pointer;
+    padding: 5px;
+}
+.inline-item > span {
+    margin-right: 4px;
+}
+.inline-item {
+    display: inline-block;
+    height: 40px;
+    vertical-align: top;
+}
+.cost-dis {
+    min-width: 130px;
+    position: absolute;
+    left: 100px;
+    padding-top: 6px;
+    font-size: 16px;
+    width: 40%;
+}
+.cost-dis > span {
+    margin-left: 8px;
+}
+.price-input {
+    width: 60px;
+    position: absolute;
+}
+.total-price {
+    float: right;
+    width: 20%;
+    padding-top: 8px;
+    text-align: center;
+}
+.price-input > input[type=number] {
+    padding: 5px 5px;
+    height: auto;
+    border: 1px solid #26debd;
+    font-size: 20px;
+    text-align: center;
+    text-align: center;
+}

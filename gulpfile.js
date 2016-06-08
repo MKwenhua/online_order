@@ -12,6 +12,9 @@ gulp.task('scripts', function () {
          'client/vendor/angular-resource/angular-resource.js',
          'client/vendor/angular-ui-router/release/angular-ui-router.js',
          'client/app/templates/welcomeHtml.js',
+         'client/app/components/laundry/laundry.js',
+         'client/app/components/nearby/nearby.js',
+         'client/app/components/status/status.js',
          'client/app/components/welcome/welcome.js',
          'client/app/app.js'
       ])
@@ -26,8 +29,12 @@ gulp.task('css', function () {
          'client/css/loader.css',
          'client/css/global.css',
          'client/css/buttons.css',
+         'client/css/padders.css',
          'client/css/form_classes.css',
          'client/css/welcome.css',
+         'client/css/status.css',
+         'client/css/nearby.css',
+         'client/css/clothes.css',
          'client/css/ngstyles.css',
          'client/css/media_queries.css'
       ])

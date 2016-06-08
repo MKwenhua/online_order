@@ -1,6 +1,9 @@
 var app = angular.module('app', [
  'ui.router',
- welcome.name
+  nearby.name,
+ 	//status.name,
+ 	laundry.name,
+	welcome.name
 ])
 .config(['$locationProvider', function($locationProvider) {
 	  $locationProvider.html5Mode({
