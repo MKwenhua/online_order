@@ -36422,44 +36422,50 @@ var clothesForm = {
 		
 		clothesItems: [
 		  {
+		  	name: 'Shirt',
 		  	type: 'Shirt',
 		  	unitPrice: 1.0,
-		  	modelName: 'noShirts',
+		  	modelName: 'laundryCtrl.laundry.shirt',
 		  	provided: true,
 		  	icon: 't_shirt.png'
 		  },
 		  {
+		  	name: 'Socks',
 		  	type: 'Socks',
 		  	unitPrice: 0.5,
-		  	modelName: 'noSocks',
+		  	modelName: 'laundryCtrl.laundry.socks',
 		  	provided: true,
 		  	icon: 'socks.png'
 		  },
 		  {
+		  	name: 'Underwear',
 		  	type: 'Underwear',
 		  	unitPrice: 2.0,
-		  	modelName: 'noUnderwears',
+		  	modelName: 'laundryCtrl.laundry.underwear',
 		  	provided: true,
 		  	icon: 'underwear.png'
 		  },
 		  {
+		  	name: 'Pants',
 		  	type: 'Pants',
 		  	unitPrice: 3.0,
-		  	modelName: 'noPants',
+		  	modelName: 'laundryCtrl.laundry.pants',
 		  	provided: true,
 		  	icon: 'normal_pants.png'
 		  },
 		 {
+		  	name: 'Dress Shirt',
 		  	type: 'Dress Shirt',
 		  	unitPrice: 4.0,
-		  	modelName: 'noDressShirts',
+		  	modelName: 'laundryCtrl.laundry.fancyShirt',
 		  	provided: true,
 		  	icon: 'dress_shirt.png'
 		  },
 		  {
-		  	type: 'Suit',
+		  	name: 'Suit',
 		  	unitPrice: 5.0,
-		  	modelName: 'noSuits',
+		  	type: 'Suit',
+		  	modelName: 'laundryCtrl.laundry.suit',
 		  	provided: true,
 		  	icon: 'suit.png'
 		  }
@@ -36473,15 +36479,15 @@ var laundry = angular.module('laundry', [])
 				'<section ng-controller="LaundryController as laundryCtrl" class="laundry">',
 					'<div class="container tap-ui">',
 							'<div class="col-md-offset-2 col-md-8">',
-								'<div class="row">',
+								'<div class="row box-wrap">',
 							    '<div class="row-center-title row-margin-20">Input Items to be picked up</div>',
-									    '<div class="clothes-item" ng-repeat="b in laundryCtrl.clothes">',
-												'<laundry-pick></laundry-pick>',
-									'</div>',
-								'</div>',
-								'<div class="row">',
-										'<div class="row-center-title row-margin-20">Total of 30</div>',
-										'<div class="btn btn-primary submit-form-butt">Comfirm</div>',
+									   '<form ng-submit="laundryCtrl.getLaundryList()">',
+									   	 '<div class="clothes-item" ng-repeat="b in laundryCtrl.clothes">',
+													'<laundry-pick></laundry-pick>',
+												'</div>',
+										'<div class="row-center-title row-margin-20">Total of {{laundryCtrl.priceTag}}</div>',
+										'<button type="submit" class="btn btn-primary submit-form-butt">Comfirm</button>',
+										'</form>',
 								'</div>',
 							'</div>',
 						'</div>',
@@ -36493,8 +36499,21 @@ var laundry = angular.module('laundry', [])
 .controller('LaundryController', function($scope) {
   var laundryCtrl = this;
   laundryCtrl.clothes = clothesForm.clothesItems;
+  laundryCtrl.priceTag = 0.0;
+  laundryCtrl.laundry = {
+  	socks: 0,
+  	shirt: 0,
+  	underwear: 0,
+  	pants: 0,
+  	fancyShirt: 0, 
+  	suit: 0
+
+  };
   laundryCtrl.qtySum = function(price, qty){
   	return  parseFloat(price) * parseInt(qty);
+  };
+  laundryCtrl.getLaundryList = function(){
+      console.log('laundryCtrl.laundry',laundryCtrl.laundry);
   };
 })
 .directive('laundryPick', function() {
@@ -36587,13 +36606,10 @@ var welcome = angular.module('welcome', [])
 var app = angular.module('app', [
  'ui.router',
   nearby.name,
- 	//lnstatus.name,
+ 	//status.name,
  	laundry.name,
 	welcome.name
 ])
 .config(['$locationProvider', function($locationProvider) {
-	  $locationProvider.html5Mode({
-	  enabled: true,
-	  requireBase: false
-	});
+	  $locationProvider.html5Mode(true);
 }])

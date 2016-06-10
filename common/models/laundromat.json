@@ -1,0 +1,107 @@
+{
+  "name": "laundromats",
+  "plural": "laundromats",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "relations": {
+    "orders": {
+      "type": "hasMany",
+      "model": "orders",
+      "foreignKey": "laundromat_id"
+    },
+    "pickups": {
+      "type": "hasMany",
+      "model": "pickups",
+      "foreignKey": "laundromat_id"
+    },
+    "deliveries": {
+      "type": "hasMany",
+      "model": "deliveries",
+      "foreignKey": "laundromat_id"
+    }
+   
+  },
+  "properties": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "address": {
+      "type": "string",
+      "required": true
+    },
+    "formatted_address": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string",
+      "required": true
+    },
+    "p_shirt": {
+      "type": "number",
+      "required": true,
+      "dataType": "decimal",
+ 			"precision": 10,
+  		"scale": 2
+    },
+    "p_socks": {
+      "type": "number",
+      "required": true,
+      "dataType": "decimal",
+ 			"precision": 10,
+  		"scale": 2
+    },
+    "p_pants": {
+      "type": "number",
+      "dataType": "decimal",
+ 			"precision": 10,
+  		"scale": 2
+    },
+    "p_undies": {
+      "type": "number"
+    },
+    "p_fancyShirt": {
+      "type": "number",
+      "required": true,
+      "dataType": "decimal",
+ 			"precision": 10,
+  		"scale": 2,
+      "postgresql": {
+        "columnName": "p_fancyShirt"
+      }
+    },
+    "p_suit": {
+      "type": "number",
+      "required": true,
+      "dataType": "decimal",
+ 			"precision": 10,
+  		"scale": 2
+    },
+    "phone": {
+      "type": "string",
+      "required": true
+    },
+    "imgurl": {
+      "type": "string"
+    },
+    "lat": {
+      "type": "number",
+      "required": true
+    },
+    "long": {
+      "type": "number",
+      "required": true
+    },
+    "lonlatg": {
+      "type": "geopoint",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

@@ -2,5 +2,14 @@
   "db": {
     "name": "db",
     "connector": "memory"
+  },
+  "pgsqldb": {
+    "host": "*",
+    "port": 5432,
+    "database": "*",
+    "password": "*",
+    "name": "pgsqldb",
+    "user": "*",
+    "connector": "postgresql"
   }
 }

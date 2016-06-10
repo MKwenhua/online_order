@@ -31,5 +31,25 @@
   "Role": {
     "dataSource": "db",
     "public": false
+  },
+  "laundromats": {
+    "dataSource": "pgsqldb",
+    "public": true
+  },
+  "customers": {
+    "dataSource": "pgsqldb",
+    "public": true
+  },
+  "orders": {
+    "dataSource": "pgsqldb",
+    "public": true
+  },
+  "pickups": {
+    "dataSource": "pgsqldb",
+    "public": true
+  },
+  "deliveries": {
+    "dataSource": "pgsqldb",
+    "public": true
   }
 }

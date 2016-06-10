@@ -6,14 +6,23 @@
     color: #525252;
     text-align: center;
 }
-.tap-ui {} .cost-per {
+.tap-ui {
+    height: 100vh;
+}
+.box-wrap {
+    box-shadow: 0 0 8px 0 #cccccc;
+    padding-bottom: 20px;
+    margin-top: 20px;
+    padding: 8px;
+}
+.cost-per {
     font-weight: 500;
     margin-right: 10px;
 }
 .clothes-item {
     /* border: 1px solid #dce0e0; */
     
-    border-bottom: 1px solid #dce0e0;
+    border-bottom: 1px solid #cccccc;
     padding-top: 5px;
     padding-bottom: 5px;
     text-align: justify;
@@ -41,7 +50,6 @@
     left: 100px;
     padding-top: 6px;
     font-size: 16px;
-    width: 40%;
 }
 .cost-dis > span {
     margin-left: 8px;

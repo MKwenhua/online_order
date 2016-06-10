@@ -323,72 +323,76 @@ textarea {
 .nearby {
 	background-color: #fff;
 }
-.laundry{
-	 background-color: #fff;
-	 height:100vh;
-	 margin: 0;
-   padding: 0;
-   color: #525252;
-   text-align: center;
+.laundry {
+    background-color: #fff;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    color: #525252;
+    text-align: center;
 }
 .tap-ui {
-
+    height: 100vh;
 }
-.cost-per{
-	font-weight: 500;
-	margin-right: 10px;
+.box-wrap {
+    box-shadow: 0 0 8px 0 #cccccc;
+    padding-bottom: 20px;
+    margin-top: 20px;
+    padding: 8px;
 }
-.clothes-item{
-	   /* border: 1px solid #dce0e0; */
-	   border-bottom: 1px solid #dce0e0;
-	       padding-top: 5px;
+.cost-per {
+    font-weight: 500;
+    margin-right: 10px;
+}
+.clothes-item {
+    /* border: 1px solid #dce0e0; */
+    
+    border-bottom: 1px solid #cccccc;
+    padding-top: 5px;
     padding-bottom: 5px;
-	    text-align: justify;
-	    padding: 2px;
+    text-align: justify;
+    padding: 2px;
 }
-.clothes-item > span{
-	margin-left: 4px;
+.clothes-item > span {
+    margin-left: 4px;
 }
-.clothes-type-butt{
-	background-color: #26debd;
-	cursor: pointer;
-	padding: 5px;
-
+.clothes-type-butt {
+    background-color: #26debd;
+    cursor: pointer;
+    padding: 5px;
 }
-.inline-item > span{
-	margin-right: 4px;
+.inline-item > span {
+    margin-right: 4px;
 }
-.inline-item{
-	display: inline-block;
-	height:40px;
-	vertical-align: top;
+.inline-item {
+    display: inline-block;
+    height: 40px;
+    vertical-align: top;
 }
-.cost-dis{
-	min-width: 130px;
-	    position: absolute;
+.cost-dis {
+    min-width: 130px;
+    position: absolute;
     left: 100px;
     padding-top: 6px;
     font-size: 16px;
- width:40%;
 }
 .cost-dis > span {
     margin-left: 8px;
 }
-.price-input{
-	    width: 60px;
+.price-input {
+    width: 60px;
     position: absolute;
-
 }
-.total-price{
-	float: right;
-  width: 20%;
-      padding-top: 8px;
-  text-align: center;
+.total-price {
+    float: right;
+    width: 20%;
+    padding-top: 8px;
+    text-align: center;
 }
 .price-input > input[type=number] {
-	    padding: 5px 5px;
+    padding: 5px 5px;
     height: auto;
-      border: 1px solid #26debd;
+    border: 1px solid #26debd;
     font-size: 20px;
     text-align: center;
     text-align: center;
@@ -418,4 +422,18 @@ textarea {
         margin-top: -10px;
         width: 83.33333333%;
     }
+    .cost-dis {
+    	 font-size: 14px;
+    	}
+    .cost-dis > span {
+    	margin-left: 4px;
+		}
+}
+@media only screen and (max-width: 750px) {
+.box-wrap{
+		 box-shadow: none;
+    padding-bottom: 0px;
+    margin-top: 10px;
+    padding: 0px;
+	}
 }

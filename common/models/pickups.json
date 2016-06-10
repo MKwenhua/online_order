@@ -1,0 +1,69 @@
+{
+  "name": "pickups",
+  "plural": "pickups",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "relations": {
+    "customer": {
+      "type": "belongsTo",
+      "model": "customers",
+      "foreignKey": "customer_id"
+    },
+    "laundromat": {
+      "type": "belongsTo",
+      "model": "laundromats",
+      "foreignKey": "laundromat_id"
+    },
+    "order": {
+      "type": "belongsTo",
+      "model": "orders",
+      "foreignKey": "order_id"
+    }
+
+  },
+  "properties": {
+    "order_time": {
+      "type": "date",
+      "required": true
+    },
+    "pickup_time": {
+      "type": "date",
+      "required": true
+    },
+    "time_took": {
+      "type": "number"
+    },
+    "rush": {
+      "type": "boolean",
+      "required": true,
+      "default": false
+    },
+    "dispute": {
+      "type": "string"
+    },
+    "pickedup": {
+      "type": "boolean",
+      "required": true,
+      "default": false
+    },
+    "customer_id": {
+      "type": "number",
+      "required": true
+    },
+    "laundromat_id": {
+      "type": "number",
+      "required": true
+    },
+    "order_id": {
+      "type": "number",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

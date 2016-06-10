@@ -1,4 +1,4 @@
-var nearby = angular.module('nearby', [])
+angular.module('nearby', [])
    .config(function($stateProvider, $urlRouterProvider) {
       $stateProvider.state('nearby', {
         url: '/nearby',

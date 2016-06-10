@@ -1,7 +1,7 @@
-var welcome = angular.module('welcome', [])
+ angular.module('welcome', [])
    .config(function($stateProvider, $urlRouterProvider) {
       $urlRouterProvider.otherwise('/');
-      $stateProvider.state('welcome', {
+      $stateProvider.state('welcome', { 
         url: '/',
         template: [
 				'<section ng-controller="WelcomeController as initCtrl" class="welcome">',
