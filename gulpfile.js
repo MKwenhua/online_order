@@ -14,12 +14,14 @@ gulp.task('scripts', function () {
          'client/app/services/lb-services.js',
          'client/app/templates/welcomeHtml.js',
          'client/app/components/laundry/laundry.js',
-         'client/app/components/nearby/nearby.js',
-         'client/app/components/menu/menu.js',
+         'client/app/templates/normalObject.js',
+         //'client/app/components/menu/menu.js',
          'client/app/components/status/status.js',
          'client/app/components/welcome/welcome.js',
          'client/app/app.js',
-         'client/app/services/geofactory.js'
+         //'client/app/templates/formTemplates.js',
+         'client/app/services/geofactory.js',
+         'client/app/services/searchResults.js'   
       ])
       .pipe(concat('bundle.js'))
       .pipe(gulp.dest('client/dist'))
@@ -30,6 +32,7 @@ gulp.task('css', function () {
    return gulp.src([
          'client/vendor/bootstrap-css-only/css/bootstrap.min.css',
          'client/css/loader.css',
+         'client/css/cubegrid.css',
          'client/css/global.css',
          'client/css/buttons.css',
          'client/css/padders.css',

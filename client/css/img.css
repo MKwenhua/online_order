@@ -1,6 +1,5 @@
-.img-container-inline{
-	display: inline-block;
-}
-img{
+
+.img-container-inline img{
 	vertical-align: top;
+	height:60px;
 }

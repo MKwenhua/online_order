@@ -1,14 +1,11 @@
-
-
 var app = angular.module('app', [
  'ui.router',
  'lbServices',
- 'nearby',
  	//status.name,
- 	'menu',
+ 	//'menu',
  	'laundry',
 	'welcome'
 ])
-.config(['$locationProvider', function($locationProvider) {
-	  $locationProvider.html5Mode(true);
+.config(['$locationProvider','$stateProvider', function($locationProvider, $stateProvider) {
+	 $locationProvider.html5Mode(true);
 }])

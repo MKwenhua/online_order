@@ -5,14 +5,26 @@
     padding: 0;
     color: #525252;
     text-align: center;
+    background-color: #232531;
 }
 .tap-ui {
     height: 100vh;
 }
+#businessName {
+    color: white;
+}
+.container-col > h2 {
+    margin-top: 40px;
+    color: #fff;
+}
+.order-wrap {
+    background: white;
+    padding: 10px 5px;
+    padding-top: 2px;
+    margin-top: 5vh;
+}
 .box-wrap {
     box-shadow: 0 0 8px 0 #cccccc;
-    padding-bottom: 20px;
-    margin-top: 20px;
     padding: 8px;
 }
 .cost-per {
@@ -26,7 +38,11 @@
     padding-top: 5px;
     padding-bottom: 5px;
     text-align: justify;
-    padding: 2px;
+    padding: 0px;
+    margin-bottom: 3px;
+}
+.row-form {
+    padding: 15px;
 }
 .clothes-item > span {
     margin-left: 4px;
@@ -46,8 +62,6 @@
 }
 .cost-dis {
     min-width: 130px;
-    position: absolute;
-    left: 100px;
     padding-top: 6px;
     font-size: 16px;
 }
@@ -56,7 +70,6 @@
 }
 .price-input {
     width: 60px;
-    position: absolute;
 }
 .total-price {
     float: right;

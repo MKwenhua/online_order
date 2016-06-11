@@ -16,22 +16,66 @@
         height: 100px;
         top: 550px;
     }
+    .center-options {
+        padding-top: 30%;
+    }
     .col-change {
         margin-top: -10px;
         width: 83.33333333%;
     }
     .cost-dis {
-    	 font-size: 14px;
-    	}
+        font-size: 14px;
+    }
     .cost-dis > span {
-    	margin-left: 4px;
-		}
+        margin-left: 4px;
+    }
+    #nearbyList a {
+        font-size: 12px;
+        height: 52px;
+    }
+    #nearbyList a > div {
+        height: 50px;
+    }
+    .img-container-inline img {
+        height: 50px;
+    }
+}
+@media only screen and (max-height: 500px) {
+    .order-wrap {
+        margin-top: 0;
+    }
 }
 @media only screen and (max-width: 750px) {
-.box-wrap{
-		 box-shadow: none;
-    padding-bottom: 0px;
-    margin-top: 10px;
-    padding: 0px;
-	}
+    .laundry > h2 {
+        margin-top: 10px;
+        color: #525252;
+    }
+    #businessName {
+        width: 100vw;
+        padding: 8px;
+        margin-left: -8px;
+        background-color: #232531;
+    }
+    #businessName h2 {
+        margin-top: 15px;
+        color: #26debd;
+        font-size: 20px;
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+    .box-wrap {
+        box-shadow: none;
+        padding-bottom: 0px;
+        margin-top: 10px;
+        padding: 0px;
+    }
+    .container-col {
+        padding: 0;
+    }
+    .order-wrap {
+        margin-top: 0vh;
+    }
+    .laundry {
+        background-color: #fff;
+    }
 }

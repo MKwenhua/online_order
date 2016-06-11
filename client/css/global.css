@@ -25,6 +25,9 @@ hr {
     padding-right: 8px;
     padding-left: 8px;
 }
+section {
+    height: 100vh;
+}
 option {
     font-weight: normal;
     display: block;

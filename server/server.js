@@ -1,7 +1,8 @@
 var loopback = require('loopback');
 var boot = require('loopback-boot');
-var postgeo = require("postgeo");
+
 var app = module.exports = loopback();
+var path = require('path');
 
 app.start = function() {
   // start the web server
@@ -17,8 +18,22 @@ app.start = function() {
   });
 };
 
-// Bootstrap the application, configure models, datasources and middleware.
-// Sub-apps like REST API are mounted via boot scripts.
+app.get('/', function(req, res, next) {
+  res.sendFile('index.html', { root: path.resolve(__dirname, '..', 'client') });
+});
+app.all('/laundry/:id?', function(req, res, next) {
+  res.sendFile('index.html', { root: path.resolve(__dirname, '..', 'client') });
+});
+app.all('/menu/*', function(req, res, next) {
+  res.sendFile('index.html', { root: path.resolve(__dirname, '..', 'client') });
+});
+app.all('/welcome', function(req, res, next) {
+  res.sendFile('index.html', { root: path.resolve(__dirname, '..', 'client') });
+});
+
+
+
+
 boot(app, __dirname, function(err) {
   if (err) throw err;
 
@@ -26,3 +41,4 @@ boot(app, __dirname, function(err) {
   if (require.main === module)
     app.start();
 });
+

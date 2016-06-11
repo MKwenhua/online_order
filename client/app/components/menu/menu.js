@@ -1,5 +1,6 @@
-angular.module('menu', [])
+app.module('menu', [])
    .config(function($stateProvider, $urlRouterProvider) {
+     // $locationProvider.html5Mode(true);
       $stateProvider.state('menu', { 
         url: '/menu', 
         template: [
@@ -8,9 +9,9 @@ angular.module('menu', [])
 				   '<div class="col-md-offset-3 col-md-6 center-options">',
 				     '<h3>Click Things</h3>',
 				     '<a ui-sref="laundry" class="opts-butt for-pick-up" >Request Pick Up<span class="side-tag"><i class="fa fa-dropbox" ></i></span></a>',
-				     '<a ui-sref="nearby" class="opts-butt  see-map" >Cleaners Near Me<span class="side-tag"><i class="fa fa-map-marker" ></i></span></a>',
+				     '<a ui-sref="laundry" class="opts-butt  see-map" >Cleaners Near Me<span class="side-tag"><i class="fa fa-map-marker" ></i></span></a>',
 				     '<a ui-sref="laundry" class="opts-butt  check-up">Check Status<span class="side-tag"><i class="fa fa-info-circle" ></i></span></a>',
-				   	 '<taco-bell></taco-bell>',
+				   	 '<bottom-nav></bottom-nav>',
 				   '</div>',
 				  '</div>',
 				'</section>'
@@ -18,12 +19,12 @@ angular.module('menu', [])
      controller: 'MenuController'
   });
 })
-.controller('MenuController', function() {
+.controller('MenuController', function($stateParams) {
   var menuCtrl = this;
-  menuCtrl.whatsup = "爆拉肚子";
+  
 })
-.directive('tacoBell', function() {
+.directive('bottomNav', function() {
   return {
-     template: welcomeHTML.first
+     template: ''//welcomeHTML.first
   };
 });

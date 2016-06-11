@@ -3,10 +3,10 @@
     "name": "db",
     "connector": "memory"
   },
-  "pgsqldb": {
+   "pgsqldb": {
     "host": "*",
     "port": 5432,
-    "database": "*",
+    "database": "petedata",
     "password": "*",
     "name": "pgsqldb",
     "user": "*",

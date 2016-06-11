@@ -2,7 +2,6 @@ module.exports = function(Laundromats) {
   
    Laundromats.getNearby = function (coordinates, cb) {
    	  console.log('got coordinates',coordinates);
-   		//var twoPnts = '-83.73386359999999, 42.2749874';
    		var sql = ['SELECT * FROM "laundromats"  WHERE ',
    							 '(st_dwithin(lonlatg, ST_SetSRID(ST_MakePoint( ',
    								coordinates.replace(/\'/g, ""),

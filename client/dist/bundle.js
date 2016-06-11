@@ -40663,229 +40663,188 @@ var welcomeHTML = {
 		first:	'<h2>{{initCtrl.whatsup}}</h2>'
 };
 
-var nearbyHTML = {
+var nearbyHTML = { 
 		mat:	[	'<strong>{{b.name | uppercase}}</strong><br>',
     				'<span>{{b.address}}</span><span>{{b.open}}</span>'
-		].join(''),
+		].join('')	
+};
+function objectConstructor(){
 
-		dryCleaners: [
-		  {
-		  	name: 'Stadium Cleaners',
-		  	pic: '2028 W Stadium Blvd',
-		  	open: true
-		  },
-		  {
-		  	name: 'Elite Cleaners II',
-		  	pic: '4065 Stone School Rd',
-		  	open: true
-		  },
-		  {
-		  	name: 'Iris Dry Cleaners',
-		  	pic: '2268 S Main St',
-		  	open: true
-		  },
-		  {
-		  	name: 'K&K Dry Cleaners',
-		  	pic: '3018 Packard St',
-		  	open: true
-		  },
-		  {
-		  	name: 'State Cleaners',
-		  	pic: '3680 S State St',
-		  	open: true
-		  }
-		  ]
+	function formBuilder (icon, itemtype, ctrlcall, itemName) {
+		return [
+		'<div class="clothes-item" >',
+		  '<div data-tp="',itemtype,'" class="clothes-type-butt inline-item">',
+					'<img data-tp="',itemtype,'" width="30" height="30" ng-src="https://canvasmp3.s3.amazonaws.com/',icon,'">',
+			'</div>',
+			'<div class="price-input inline-item">',
+	    		'<input name="',itemtype,'" type="number" ng-model="laundryCtrl.',itemtype,'" class="form-control" value="0" min="0" max="99">',
+	    '</div>',
+			'<div class="cost-dis inline-item">',
+					'<span class="cost-per">',itemName,'</span><span>{{',ctrlcall,' | currency:"£":2}}</span><span>per unit</span>',
+	    '</div>',
+	    '<div class="inline-item total-price">',
+	    	 '{{laundryCtrl.',itemtype,' + " : "}} {{ laundryCtrl.qtySum(',ctrlcall,', laundryCtrl.',itemtype,', ',itemtype,') | currency:"£":2 }}',
+	    '</div>',
+	  '</div>'].join('');
+	
+	};
+
+	var x = [ ['t_shirt.png','shirts', 'laundryCtrl.thisCompany.p_shirt', 'Shirt'],
+					  ['socks.png', 'socks','laundryCtrl.thisCompany.p_socks', 'Sock' ],
+					  ['underwear.png', 'underwear','laundryCtrl.thisCompany.p_undies', 'Underwear' ],
+					  ['normal_pants.png', 'pants','laundryCtrl.thisCompany.p_pants', 'Pants' ],
+					  ['dress_shirt.png', 'fancyshirts','laundryCtrl.thisCompany.p_fancyShirt', 'Dress Shirt' ],
+					  ['suit.png', 'suits','laundryCtrl.thisCompany.p_suit', 'Suit' ]
+			    ];
+
+	return x.map(function(xArr){ return formBuilder( xArr[0],xArr[1],xArr[2],xArr[3])}).join('');
+	
 };
-var clothesForm = {
-		mat:	[	
-		'<div class="clothes-type-butt inline-item">',
-				'<img width="30" height="30" ng-src="https://canvasmp3.s3.amazonaws.com/{{b.icon}}">',
-		'</div>',
-		'<div class="cost-dis inline-item">',
-				'<span class="cost-per">{{b.type}}</span><span>{{b.unitPrice | currency:"£":2}}</span><span>per unit</span>',
-    '</div>',
-    '<div class="price-input inline-item">',
-    		'<input type="number" ng-model="b.modelName" class="form-control" value="0" min="0" max="99">',
-    '</div>',
-    '<div class="inline-item total-price">',
-    '{{b.modelName + " : "}} {{ laundryCtrl.qtySum(b.unitPrice, b.modelName, b.refKey) | currency:"£":2 }}',
-    '</div>'
-		].join(''),
-    getUrl:'https://canvasmp3.s3.amazonaws.com/',
-		
-		clothesItems: [
-		  {
-		  	name: 'Shirt',
-		  	type: 'Shirt',
-		  	unitPrice: 1.0,
-		  	//modelName: 'laundryCtrl.laundry.shirt',
-		  	modelName: 'shirt',
-		  	refKey:  'shirt',
-		  	provided: true,
-		  	icon: 't_shirt.png'
-		  },
-		  {
-		  	name: 'Socks',
-		  	type: 'Socks',
-		  	unitPrice: 0.5,
-		  	//modelName: 'laundryCtrl.laundry.socks',
-		  	modelName: 'socks',
-		  	refKey:  'socks',
-		  	provided: true,
-		  	icon: 'socks.png'
-		  },
-		  {
-		  	name: 'Underwear',
-		  	type: 'Underwear',
-		  	unitPrice: 2.0,
-		  	//modelName: 'laundryCtrl.laundry.underwear',
-		  	modelName: 'underwear',
-		  	refKey:  'underwear',
-		  	provided: true,
-		  	icon: 'underwear.png'
-		  },
-		  {
-		  	name: 'Pants',
-		  	type: 'Pants',
-		  	unitPrice: 3.0,
-		  	//modelName: 'laundryCtrl.laundry.pants',
-		  	modelName: 'pants',
-		  	refKey:  'pants',
-		  	provided: true,
-		  	icon: 'normal_pants.png'
-		  },
-		 {
-		  	name: 'Dress Shirt',
-		  	type: 'Dress Shirt',
-		  	unitPrice: 4.0,
-		  	//modelName: 'laundryCtrl.laundry.fancyShirt',
-		  	modelName: 'fancyShirt',
-		  	refKey:  'fancyShirt',
-		  	provided: true,
-		  	icon: 'dress_shirt.png'
-		  },
-		  {
-		  	name: 'Suit',
-		  	unitPrice: 5.0,
-		  	type: 'Suit',
-		  	//modelName: 'laundryCtrl.laundry.suit',
-		  	modelName: 'suit',
-		  	refKey:  'suit',
-		  	provided: true,
-		  	icon: 'suit.png'
-		  }
-		  ]
-};
+var clothesHTML = {
+  	mat: objectConstructor(),
+	  keylist: [ ['shirts','p_shirt'],['socks', 'p_socks'],['pants', 'p_pants'],['underwear', 'p_undies'],
+						   ['fancyshirts', 'p_fancyShirt'],['suits' ,'p_suit']]
+}
  angular.module('laundry', [])
-   .config(function($stateProvider, $urlRouterProvider) {
-      $stateProvider.state('laundry', {
-        url: '/laundry',
+   .config(['$stateProvider',
+   function( $stateProvider) {
+      $stateProvider.state('laundromat', {
+        url: '/laundry/:id',
         template: [
 				'<section ng-controller="LaundryController as laundryCtrl" class="laundry">',
-					'<div class="container tap-ui">',
-							'<div class="col-md-offset-2 col-md-8">',
-								'<div class="row box-wrap">',
+					'<div  ng-hide="laundryCtrl.hasData" class="load-block">',
+								'<div class="loader">Loading...</div>',
+						'</div>',
+					'<div ng-show="laundryCtrl.hasData" class="container container-col ng-cloak">',
+							'<div class="col-md-offset-1 col-md-10">',
+								'<div id="businessName">',
+										'<h2 >{{laundryCtrl.thisCompany.name}}</h2>',
+								'</div>',
+								'<div class="order-wrap">',
 							    '<div class="row-center-title row-margin-20">Input Items to be picked up</div>',
-									  '<form ng-submit="laundryCtrl.getLaundryList()">',
-									   	 '<div class="clothes-item" ng-repeat="b in laundryCtrl.clothes">',
+									  '<form id="laundryList" ng-submit="laundryCtrl.getLaundryList()" >',
+									   	'<div class="is-real" ng-click="laundryCtrl.tap($event)" >',
 													'<laundry-pick></laundry-pick>',
-												'</div>',
-										'<div class="row-center-title row-margin-20">Total of {{laundryCtrl.priceTag}}</div>',
+											'</div>',
+										'<div class="row-center-title row-margin-20">Total of {{laundryCtrl.total | currency:"£":2}}</div>',
 										'<button type="submit" class="btn btn-primary submit-form-butt">Comfirm</button>',
 										'</form>',
-								'</div>',
+									'</div>',
 							'</div>',
 						'</div>',
 				'</section>'
      ].join(''),
      controller: 'LaundryController'
   });
-})
-.controller('LaundryController', function($scope) {
+}])
+.controller('LaundryController', function($stateParams,searchResults, Orders, Laundromats) {
+	console.log('Orders', Orders.properties);
+	console.log('$stateParams', $stateParams);
   var laundryCtrl = this;
-  laundryCtrl.clothes = clothesForm.clothesItems;
-  laundryCtrl.priceTag = 0.0;
-  laundryCtrl.laundry = {
-  	socks: 0,
-  	shirt: 0,
-  	underwear: 0,
-  	pants: 0,
-  	fancyShirt: 0, 
-  	suit: 0
-  };
-  function calcStuff(){
-
-  };
-  laundryCtrl.qtySum = function(price, qty, rfkey){
-  	return  parseFloat(price) * parseInt(qty);
-  };
-  laundryCtrl.getLaundryList = function(){
-      console.log('laundryCtrl.laundry',laundryCtrl.laundry);
-  };
+  laundryCtrl.hasData = false;
+  laundryCtrl.thisCompany = searchResults.idMatch[$stateParams.id];
+  
+  
+  function innitRest(){
+	  laundryCtrl.socks = 0;
+	  laundryCtrl.shirts = 0;
+	  laundryCtrl.underwear = 0;
+	  laundryCtrl.pants = 0;
+	  laundryCtrl.fancyshirts = 0;
+	  laundryCtrl.suits = 0;
+	  laundryCtrl.total = 0.0;
+	  var priceList = _laundryTemplate.keylist.reduce(function(obj,itm){
+				  						 obj[itm[0]] = laundryCtrl.thisCompany[itm[1]];
+				  						 return obj;
+										},{});
+	  console.log('priceList',	priceList);
+	  laundryCtrl.customer_comments = '';
+	 
+	   
+	  var totalPrice = (function(){
+	  	var laundryTypes = ['socks','shirts','underwear', 'pants', 'fancyshirts', 'suits'];
+	   	return function(){
+	   		return laundryTypes.reduce(function(total, key){
+	   				total += (laundryCtrl[key] * priceList[key]);
+	   				return total;
+	   		},0);
+	   }
+	  })();
+	  laundryCtrl.tap = function($event){
+	  	
+	  	var item = $event.target.dataset.tp;
+	  	if(item){
+	  		laundryCtrl[item] += 1;
+	  		laundryCtrl.total =  totalPrice();
+	  	}
+	  };
+	  laundryCtrl.qtySum = function(price, qty, rfkey){
+	  	laundryCtrl.total =  totalPrice();
+	  	return  parseFloat(price) * parseInt(qty);
+	  };
+	  laundryCtrl.getLaundryList = function(){
+	      console.log('laundryCtrl.laundry',laundryCtrl.thisCompany);
+	  };
+ 	};
+  if(laundryCtrl.thisCompany){
+  	innitRest();
+  	laundryCtrl.hasData = true;
+  }else{
+	  Laundromats.findById({ 
+	  	id: $stateParams.id 
+	  }).$promise
+	  	.then(function(data) {
+	  		laundryCtrl.thisCompany = data;
+	  		innitRest();
+	  		laundryCtrl.hasData = true;
+	     });
+	 }
 })
 .directive('laundryPick', function() {
   return {
-     template: clothesForm.mat
+     template: _laundryTemplate.mat
   };
 }); 
 
-angular.module('nearby', [])
-   .config(function($stateProvider, $urlRouterProvider) {
-      $stateProvider.state('nearby', {
-        url: '/nearby',
-        template: [
-				'<section ng-controller="NearbyController as nearbyCtrl" class="nearby">',
-					'<div class="container">',
-					'<ul>',
-					 '<li  ng-repeat="b in nearbyCtrl.closeBy">',
-							 '<laundry-nearby></laundry-nearby>',
-						'</li>',
-					'</ul>',
-				  '</div>',
-				'</section>'
-     ].join(''),
-     controller: 'NearbyController'
-  });
-})
-.controller('NearbyController', function($scope) {
-  var nearbyCtrl = this;
-  nearbyCtrl.closeBy = nearbyHTML.dryCleaners;
-  
-})
-.directive('laundryNearby', function () {
-  return {
-     template: nearbyHTML.mat
-  };
-}); 
-angular.module('menu', [])
-   .config(function($stateProvider, $urlRouterProvider) {
-      $stateProvider.state('menu', { 
-        url: '/menu', 
-        template: [
-				'<section ng-controller="MenuController as menuCtrl" class="menu">',
-					'<div class="container">',
-				   '<div class="col-md-offset-3 col-md-6 center-options">',
-				     '<h3>Click Things</h3>',
-				     '<a ui-sref="laundry" class="opts-butt for-pick-up" >Request Pick Up<span class="side-tag"><i class="fa fa-dropbox" ></i></span></a>',
-				     '<a ui-sref="nearby" class="opts-butt  see-map" >Cleaners Near Me<span class="side-tag"><i class="fa fa-map-marker" ></i></span></a>',
-				     '<a ui-sref="laundry" class="opts-butt  check-up">Check Status<span class="side-tag"><i class="fa fa-info-circle" ></i></span></a>',
-				   	 '<taco-bell></taco-bell>',
-				   '</div>',
-				  '</div>',
-				'</section>'
-     ].join(''),
-     controller: 'MenuController'
-  });
-})
-.controller('MenuController', function() {
-  var menuCtrl = this;
-  menuCtrl.whatsup = "爆拉肚子";
-})
-.directive('tacoBell', function() {
-  return {
-     template: welcomeHTML.first
-  };
-});
+var _laundryTemplate = (function(){
+	function objectConstructor(){
+
+	function formBuilder (icon, itemtype, ctrlcall, itemName) {
+		return [
+		'<div class="clothes-item" >',
+		  '<div data-tp="',itemtype,'" class="clothes-type-butt inline-item">',
+					'<img data-tp="',itemtype,'" width="30" height="30" ng-src="https://canvasmp3.s3.amazonaws.com/',icon,'">',
+			'</div>',
+			'<div class="price-input inline-item">',
+	    		'<input name="',itemtype,'" type="number" ng-model="laundryCtrl.',itemtype,'" class="form-control" value="0" min="0" max="99">',
+	    '</div>',
+			'<div class="cost-dis inline-item">',
+					'<span class="cost-per">',itemName,'</span><span>{{',ctrlcall,' | currency:"£":2}}</span><span>per unit</span>',
+	    '</div>',
+	    '<div class="inline-item total-price">',
+	    	 '{{laundryCtrl.',itemtype,' + " : "}} {{ laundryCtrl.qtySum(',ctrlcall,', laundryCtrl.',itemtype,', ',itemtype,') | currency:"£":2 }}',
+	    '</div>',
+	  '</div>'].join('');
+	
+	};
+
+	var x = [ ['t_shirt.png','shirts', 'laundryCtrl.thisCompany.p_shirt', 'Shirt'],
+					  ['socks.png', 'socks','laundryCtrl.thisCompany.p_socks', 'Sock' ],
+					  ['underwear.png', 'underwear','laundryCtrl.thisCompany.p_undies', 'Underwear' ],
+					  ['normal_pants.png', 'pants','laundryCtrl.thisCompany.p_pants', 'Pants' ],
+					  ['dress_shirt.png', 'fancyshirts','laundryCtrl.thisCompany.p_fancyShirt', 'Dress Shirt' ],
+					  ['suit.png', 'suits','laundryCtrl.thisCompany.p_suit', 'Suit' ]
+			    ];
+
+	return x.map(function(xArr){ return formBuilder( xArr[0],xArr[1],xArr[2],xArr[3])}).join('');
+	
+	};
+	return {
+			mat: objectConstructor(),
+	    keylist: [ ['shirts','p_shirt'],['socks', 'p_socks'],['pants', 'p_pants'],['underwear', 'p_undies'],
+						   ['fancyshirts', 'p_fancyShirt'],['suits' ,'p_suit']]
+	}
+})();
 var status = angular.module('status', [])
    .config(function($stateProvider, $urlRouterProvider) {
       $stateProvider.state('status', {
@@ -40911,34 +40870,40 @@ var status = angular.module('status', [])
 }); 
 
 angular.module('welcome', [])
-   .config(function($stateProvider, $urlRouterProvider) {
-      $urlRouterProvider.otherwise('/');
+   .config(function( $stateProvider, $urlRouterProvider) {
+   	  //$locationProvider.html5Mode(true);
+      $urlRouterProvider.otherwise('/welcome');
       $stateProvider.state('welcome', { 
-        url: '/',
+        url: '/welcome',
         template: [
 				'<section id="welcome" ng-controller="WelcomeController as initCtrl" ng-class="[initCtrl.set]">',
-					'<div class="load-block">',
-						'<div class="loader">Loading...</div>',
-					'</div>',
-					'<div class="container">',
-				   '<div ng-show="initCtrl.startUp" class="col-md-offset-2 col-md-8 center-options">',
-				     '<h3>Dry Cleaners Near You</h3>',
-				     '<div class="geo-find" ng-click="initCtrl.findNearby()">Nearby</div>',
-				   '</div>',
-				   '<ul id="nearbyList" class="pretty-ul centered-ul">',
-							 	'<drycleaners-nearby></drycleaners-nearby>',
-				   '</ul>',
-				  '</div>',  
+						'<div class="load-block">',
+								'<div class="loader">Loading...</div>',
+						'</div>',
+						'<div class="container">',
+					   '<div ng-show="initCtrl.startUp" class="col-md-offset-2 col-md-8 center-options">',
+					    	 '<h3>Dry Cleaners Near You</h3>',
+					     	 '<div class="geo-find" ng-click="initCtrl.findNearby()">Nearby</div>',
+					   '</div>',
+					   '<h4 ng-show="initCtrl.hasResults">Results</h4>',
+					   '<ul id="nearbyList" class="pretty-ul centered-ul">',
+								 	'<drycleaners-nearby></drycleaners-nearby>',
+					   '</ul>',
+					  '</div>',  
 				'</section>'
      ].join(''),
      controller: 'WelcomeController'
   }); 
 })
-.controller('WelcomeController', function(GeoLocMethods, Laundromats) {
+.controller('WelcomeController', function(GeoLocMethods, Laundromats,searchResults) {
   var initCtrl = this;
   initCtrl.set = 'setup';
   initCtrl.startUp = true;
-  initCtrl.closeBy = [];
+  initCtrl.hasResults = false;
+  initCtrl.closeBy = searchResults;
+  initCtrl.getImage = function(url){
+  	return url ? url : 'dry_icon.jpg';
+  };
   initCtrl.findNearby = function(){
   	initCtrl.startUp = false;
   	initCtrl.set = 'processing';
@@ -40947,14 +40912,13 @@ angular.module('welcome', [])
   
   function latLngStr(position){
 		 var latLng = String(position.coords.longitude) + ' , '  + String(position.coords.latitude);
-		 initCtrl.set = ''
 		 Laundromats.getNearby({ coordinates: latLng })
 		  .$promise
 		  .then(function(dta) { 
+		  	initCtrl.hasResults = dta.length > 0;
 		  	initCtrl.set = 'result-list';
 		  	console.log(dta); 
-        initCtrl.closeBy = dta;
-		  	
+		  	initCtrl.closeBy.mapResults(dta);  	
 		  });
 		 }
 
@@ -40963,31 +40927,30 @@ angular.module('welcome', [])
 .directive('drycleanersNearby', function() {
   return {
      template: [
-     '<li ng-repeat="b in initCtrl.closeBy">',
-     '<div class="img-container-inline">',
-     		'<img height="60" width="60" ng-src="{{ b.imgurl ? b.imgurl : dry_Icon.png }}">',
-     '</div>',
-     '<div class="info-inline">',	
-     		'<strong>{{b.name | uppercase}}</strong><br>',
-    		'<span>{{b.address}}</span><span>something</span>',
-    	'</div>',
+     '<li ng-repeat="b in initCtrl.closeBy.lmats">',
+     '<a ui-sref="laundromat({id: b.id})">',
+	     '<div class="img-container-inline">',
+	     		'<img  ng-src="{{initCtrl.getImage(b.imgurl)}}">',
+	     '</div>',
+	     '<div class="info-inline">',	
+	     		'<strong>{{b.name | uppercase}}</strong><br>',
+	    		'<span>{{b.address}}</span><span>{{b.phone}}</span>',
+	    	'</div>',
+	    	'</a>',
     	'</li>'
 		].join('')
   };
 });
-
-
 var app = angular.module('app', [
  'ui.router',
  'lbServices',
- 'nearby',
  	//status.name,
- 	'menu',
+ 	//'menu',
  	'laundry',
 	'welcome'
 ])
-.config(['$locationProvider', function($locationProvider) {
-	  $locationProvider.html5Mode(true);
+.config(['$locationProvider','$stateProvider', function($locationProvider, $stateProvider) {
+	 $locationProvider.html5Mode(true);
 }])
 
 app.factory('GeoLocMethods', function(){
@@ -41023,4 +40986,18 @@ app.factory('GeoLocMethods', function(){
 		}  
 	
 	};
+});
+app.service('searchResults', function() {
+   var searchResults = this;
+   searchResults.idMatch = {};
+   searchResults.lmats = [];
+   searchResults.mapResults = function(dta) {
+      if (!(dta instanceof Array)) return '';
+      searchResults.lmats = dta;
+      searchResults.idMatch = dta.reduce(function(obj, itm) {
+         obj[itm.id] = itm;
+         return obj;
+      }, {});
+   };
+
 });

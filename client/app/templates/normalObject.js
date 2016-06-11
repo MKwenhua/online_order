@@ -1,13 +1,5 @@
-var welcomeHTML = {
-		first:	'<h2>{{initCtrl.whatsup}}</h2>'
-};
-
-var nearbyHTML = { 
-		mat:	[	'<strong>{{b.name | uppercase}}</strong><br>',
-    				'<span>{{b.address}}</span><span>{{b.open}}</span>'
-		].join('')	
-};
-function objectConstructor(){
+var _laundryTemplate = (function(){
+	function objectConstructor(){
 
 	function formBuilder (icon, itemtype, ctrlcall, itemName) {
 		return [
@@ -38,9 +30,10 @@ function objectConstructor(){
 
 	return x.map(function(xArr){ return formBuilder( xArr[0],xArr[1],xArr[2],xArr[3])}).join('');
 	
-};
-var clothesHTML = {
-  	mat: objectConstructor(),
-	  keylist: [ ['shirts','p_shirt'],['socks', 'p_socks'],['pants', 'p_pants'],['underwear', 'p_undies'],
+	};
+	return {
+			mat: objectConstructor(),
+	    keylist: [ ['shirts','p_shirt'],['socks', 'p_socks'],['pants', 'p_pants'],['underwear', 'p_undies'],
 						   ['fancyshirts', 'p_fancyShirt'],['suits' ,'p_suit']]
-}
+	}
+})();
