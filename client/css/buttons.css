@@ -18,3 +18,17 @@
     text-decoration: none;
     color: #26debd!important;
 }
+.geo-find{
+	cursor: pointer;
+	border: 1px solid #26debd;
+	background-color: #26debd;
+	border-radius: 4px;
+	text-align: center;
+	font-weight: bold;
+	font-size: 18px;
+	padding:10px;
+	color:#fff;
+	margin-top:20px;
+	width: 90%;
+	margin-left: 5%; 
+}

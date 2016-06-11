@@ -1,0 +1,6 @@
+.img-container-inline{
+	display: inline-block;
+}
+img{
+	vertical-align: top;
+}

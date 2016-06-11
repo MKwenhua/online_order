@@ -8,7 +8,7 @@
 							'<div class="col-md-offset-2 col-md-8">',
 								'<div class="row box-wrap">',
 							    '<div class="row-center-title row-margin-20">Input Items to be picked up</div>',
-									   '<form ng-submit="laundryCtrl.getLaundryList()">',
+									  '<form ng-submit="laundryCtrl.getLaundryList()">',
 									   	 '<div class="clothes-item" ng-repeat="b in laundryCtrl.clothes">',
 													'<laundry-pick></laundry-pick>',
 												'</div>',

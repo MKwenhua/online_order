@@ -2,8 +2,10 @@
 
 var app = angular.module('app', [
  'ui.router',
-  'nearby',
+ 'lbServices',
+ 'nearby',
  	//status.name,
+ 	'menu',
  	'laundry',
 	'welcome'
 ])

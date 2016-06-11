@@ -47,7 +47,7 @@ var clothesForm = {
     		'<input type="number" ng-model="b.modelName" class="form-control" value="0" min="0" max="99">',
     '</div>',
     '<div class="inline-item total-price">',
-    '{{b.modelName}} : {{ laundryCtrl.qtySum(b.unitPrice, b.modelName, b.refKey) | currency:"£":2 }}',
+    '{{b.modelName + " : "}} {{ laundryCtrl.qtySum(b.unitPrice, b.modelName, b.refKey) | currency:"£":2 }}',
     '</div>'
 		].join(''),
     getUrl:'https://canvasmp3.s3.amazonaws.com/',

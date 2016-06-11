@@ -1,0 +1,27 @@
+.pretty-ul{
+	list-style: none;
+	padding:0;
+	margin: 0;
+}
+.centered-ul{
+	margin-top: 50px;
+}
+#nearbyList{
+	text-align: justify;
+
+}
+#nearbyList li{
+	border: 1px solid silver;
+}
+#nearbyList li:hover{
+	background-color: yellow;
+}
+.info-inline{
+	padding:8px;
+	display: inline-block;
+}
+#nearbyList li > div{
+	vertical-align: top;
+	display: inline-block;
+	height:60px;
+}

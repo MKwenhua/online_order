@@ -31,10 +31,36 @@
     color: #232531!important;
     font-size: 1.5em;
 }
-.welcome{
-	 background-color: #232531;
+#welcome{
 	 height:100vh;
 	 margin: 0;
    padding: 0;
+   background-color: #fff;
    text-align: center;
+}
+#welcome.setup{
+	background-color: #232531;
+}
+#welcome.setup  >  .innit-screen {
+	display:block;
+}
+#welcome.setup  > ul {
+	display: none;
+}
+#welcome.setup > .load-block{
+	display: none;
+}
+#welcome.result-list > .load-block{
+	display: none;
+}
+
+#welcome.processing  >  .innit-screen {
+	display:none;
+}
+#welcome.result-list  >  .innit-screen {
+	display:none;
+}
+
+#welcome.processing > .load-block{
+	display: block;
 }
