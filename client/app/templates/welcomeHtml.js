@@ -1,6 +1,4 @@
-var welcomeHTML = {
-		first:	'<h2>{{initCtrl.whatsup}}</h2>'
-};
+/*
 
 var nearbyHTML = { 
 		mat:	[	'<strong>{{b.name | uppercase}}</strong><br>',
@@ -44,3 +42,4 @@ var clothesHTML = {
 	  keylist: [ ['shirts','p_shirt'],['socks', 'p_socks'],['pants', 'p_pants'],['underwear', 'p_undies'],
 						   ['fancyshirts', 'p_fancyShirt'],['suits' ,'p_suit']]
 }
+*/
