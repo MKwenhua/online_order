@@ -149,6 +149,7 @@ body {
     font-family: 'proxima_nova_softregular', Arial, sans-serif;
     color: #525252;
     /*background: #f3f3f3; */
+        background-color: #232531;
 }
 hr {
     margin-top: 40px;
@@ -295,12 +296,106 @@ textarea {
     color: #26debd;
     background: #232531;
 }
+.go-back {
+    display: block;
+    border-radius: 4px;
+    padding: 6px;
+    text-align: center;
+    position: absolute;
+    left: 15px;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    margin-top: 3px;
+    padding: 6px 15px;
+}
+.go-back > i {
+    margin-right: 5px;
+}
+.redish-button {
+    color: #ffffff;
+    background-color: #e74c3c;
+    border-color: #e74c3c;
+}
 .row-margin-20{
 	margin-bottom: 20px;
 	margin-top:20px;
 }
+.row-margin-20-8{
+	margin-top: 8px;
+	margin-bottom: 20px;
+}
 .box-wrap > .row{
 	margin-bottom: 20px;
+}
+.comment-box {
+    text-rendering: auto;
+    color: initial;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+    margin: 0em 0em 0em 0em;
+    font: 11px BlinkMacSystemFont;
+    -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+textarea {
+    -webkit-appearance: textfield;
+    background-color: white;
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+    -webkit-rtl-ordering: logical;
+    -webkit-user-select: text;
+    cursor: auto;
+    padding: 1px;
+    border-width: 2px;
+    border-style: inset;
+    border-color: initial;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    resize: none;
+}
+.order-wrap {
+    overflow: auto;
+    min-height: 59vh;
+}
+#commentArea > .col-xs-12 {
+    text-align: left;
+    margin-top: 15px;
+}
+#commentArea > label {
+    font-size: 15px;
+}
+.inline-block-divs {
+    width: 100%;
+    padding: 2%;
+    height: 280px;
+    text-align: start;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.inline-block-divs >div {} .hidden {
+    display: none;
+}
+.opt-duo {
+    cursor: pointer;
+    border: 1px solid #26debd;
+    height: 90%;
+    border-radius: 4px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 15px;
+    width: 40%;
+    margin: 5%;
+    cursor: pointer;
 }
 #pickupDate {
     display: flex;
@@ -459,6 +554,20 @@ textarea {
     text-align: center;
     text-align: center;
 }
+/*
+#laundryBlock.set-one > .address-form{
+	display: none;
+}
+#laundryBlock.set-one > .container-col{
+	display: block;
+}
+#laundryBlock.set-end > .container-col{
+	display: none;
+}
+#laundryBlock.set-end > .address-form{
+	display: block;
+}
+*/
 .side-tag {
     background-color: #26debd;
     height: 45px;

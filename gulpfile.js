@@ -21,6 +21,7 @@ gulp.task('scripts', function () {
          'client/app/app.js',
          //'client/app/templates/formTemplates.js',
          'client/app/services/geofactory.js',
+         'client/app/services/orderState.js',
          'client/app/services/searchResults.js'   
       ])
       .pipe(concat('bundle.js'))
@@ -36,6 +37,7 @@ gulp.task('css', function () {
          'client/css/global.css',
          'client/css/buttons.css',
          'client/css/padders.css',
+         'client/css/form_part2.css',
          'client/css/form_classes.css',
          'client/css/status.css',
          'client/css/nearby.css',

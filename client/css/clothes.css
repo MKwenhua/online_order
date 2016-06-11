@@ -85,3 +85,17 @@
     text-align: center;
     text-align: center;
 }
+/*
+#laundryBlock.set-one > .address-form{
+	display: none;
+}
+#laundryBlock.set-one > .container-col{
+	display: block;
+}
+#laundryBlock.set-end > .container-col{
+	display: none;
+}
+#laundryBlock.set-end > .address-form{
+	display: block;
+}
+*/

@@ -1,0 +1,70 @@
+.comment-box {
+    text-rendering: auto;
+    color: initial;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+    margin: 0em 0em 0em 0em;
+    font: 11px BlinkMacSystemFont;
+    -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+textarea {
+    -webkit-appearance: textfield;
+    background-color: white;
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+    -webkit-rtl-ordering: logical;
+    -webkit-user-select: text;
+    cursor: auto;
+    padding: 1px;
+    border-width: 2px;
+    border-style: inset;
+    border-color: initial;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    resize: none;
+}
+.order-wrap {
+    overflow: auto;
+    min-height: 59vh;
+}
+#commentArea > .col-xs-12 {
+    text-align: left;
+    margin-top: 15px;
+}
+#commentArea > label {
+    font-size: 15px;
+}
+.inline-block-divs {
+    width: 100%;
+    padding: 2%;
+    height: 280px;
+    text-align: start;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.inline-block-divs >div {} .hidden {
+    display: none;
+}
+.opt-duo {
+    cursor: pointer;
+    border: 1px solid #26debd;
+    height: 90%;
+    border-radius: 4px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 15px;
+    width: 40%;
+    margin: 5%;
+    cursor: pointer;
+}

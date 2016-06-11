@@ -3,13 +3,14 @@
     "name": "db",
     "connector": "memory"
   },
-   "pgsqldb": {
+    "pgsqldb": {
     "host": "*",
     "port": 5432,
-    "database": "petedata",
+    "database": "*",
     "password": "*",
     "name": "pgsqldb",
     "user": "*",
     "connector": "postgresql"
   }
+
 }

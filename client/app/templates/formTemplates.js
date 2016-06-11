@@ -1,6 +1,6 @@
 app.service('laundryHtml', function(){
 	var laundryHtml = this;
-	function objectConstructor(){
+	function objectConstructor(){ 
 
 	function formBuilder (icon, itemtype, ctrlcall, itemName) {
 		return [
@@ -32,8 +32,71 @@ app.service('laundryHtml', function(){
 	return x.map(function(xArr){ return formBuilder( xArr[0],xArr[1],xArr[2],xArr[3])}).join('');
 	
 	};
+
+	function finalForm(){
+		return [
+		'<div class="container">',
+		   '<div class="form-holder">',
+		      '<div class="col-md-offset-2 col-md-8 col-sm-offset-1 col-sm-10">',
+		         '<div class="row-center-title">',
+		            'Place Your Order',
+		         '</div>',
+		         '<div class="row">',
+		            '<div class="col-xs-12 main-label">',
+		               'Customer Information',
+		            '</div>',
+		            '<div class="col-xs-12">',
+		               '<label>Name</label>',
+		               '<input type="text" class="form-control" pattern="..+" required value=" "/>',
+		            '</div>',
+		         '</div>',
+		         '<div class="row">',
+		            '<div class="padder"></div>',
+		            '<div class="col-xs-9">',
+		               '<label>Street Address</label>',
+		               '<input type="text" class="form-control" pattern="..+" required  value=" "/>',
+		            '</div>',
+		            '<div class="col-xs-3">',
+		               '<label>Unit #</label>',
+		               '<input type="text" class="form-control" pattern="..+" value=" " id="aptLoc"  />',
+		            '</div>',
+		         '</div>',
+		         '<div class="row">',
+		            '<div class="padder"></div>',
+		            '<div class="col-xs-7">',
+		               '<label>City</label>',
+		               '<input type="text" class="form-control" pattern="..+" id="cityLoc"  value=" "/>',
+		            '</div>',
+		            '<div class="col-xs-2">',
+		               '<label>State</label>',
+		               '<input type="text" class="form-control" pattern="..+" value=" " />',
+		            '</div>',
+		            '<div class="col-xs-3">',
+		               '<label>Zip Code</label>',
+		               '<input type="text" class="form-control" pattern="[0-9]+" value=" " />',
+		            '</div>',
+		         '</div>',
+		         '<hr>',
+		         '<div id="pickupDate" class="row">',
+		            '<div class="col-xs-5 col-change">',
+		               '<label>Date</label>',
+		               '<input type="date" id="datePick" class="form-control"  name="pickup" pattern="[0-9\/\]+" value=" ">',
+		            '</div>',
+		         '</div>',
+		         '<hr>',
+		         '<div class="row">',
+		            '<div class="col-xs-12">',
+		               '<div id="saveLoc" class="btn btn-primary submit-form-butt">Place Order</div>',
+		            '</div>',
+		         '</div>',
+		      '</div>',
+		   '</div>',
+		'</div>'
+		].join('');
+	};
 	laundryHtml.mat = objectConstructor();
 	laundryHtml.keylist = [ ['shirts','p_shirt'],['socks', 'p_socks'],['pants', 'p_pants'],['underwear', 'p_undies'],
 						   ['fancyshirts', 'p_fancyShirt'],['suits' ,'p_suit']];
+	laundryHtml.finalForm = finalForm();
 	
 });
