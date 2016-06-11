@@ -176,14 +176,17 @@ input {
     border: 1px solid #bbb;
     color: #3d4351;
 }
+/*
 input[type=text]:valid {
     border: 2px solid #26debd;
 }
 input[type=text]:invalid {
     border: 1px solid #ccc;
 }
+*/
 input[type="date"] {
     text-align: center;
+    border: 1px solid #ccc;
 }
 /*
 input[type="date"]:after{
@@ -397,6 +400,13 @@ textarea {
     margin: 5%;
     cursor: pointer;
 }
+#adFrm{
+	text-align: left;
+}
+#laundryBlock.form-last{
+  background-color: #fff!important;
+ }
+
 #pickupDate {
     display: flex;
     align-items: center;

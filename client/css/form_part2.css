@@ -68,3 +68,9 @@ textarea {
     margin: 5%;
     cursor: pointer;
 }
+#adFrm{
+	text-align: left;
+}
+#laundryBlock.form-last{
+  background-color: #fff!important;
+ }

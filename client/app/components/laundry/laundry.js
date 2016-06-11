@@ -19,8 +19,8 @@
 									  	 	'<div class="is-real" ng-click="laundryCtrl.tap($event)" >',
 														'<laundry-pick></laundry-pick>',
 												'</div>',
-												'<div class="row-center-title row-margin-20">Total of {{laundryCtrl.total | currency:"£":2}}</div>',
-												'<button ng-click="laundryCtrl.setAt = \'p2\' " type="submit" class="btn btn-primary submit-form-butt">Comfirm</button>',			 
+												'<div class="row-center-title row-margin-20">Total of {{laundryCtrl.order.total | currency:"£":2}}</div>',
+												'<button ng-click="laundryCtrl.setAt = \'p2\' " class="btn btn-primary submit-form-butt">Comfirm</button>',			 
 										'</div>',
 										'<div id="commentArea" ng-show="laundryCtrl.setAt === \'p2\' " class="order-wrap order-part3">',
 										 	'<button ng-click="laundryCtrl.setAt = \'p1\' " class="go-back redish-button"><i class="fa fa-chevron-left" aria-hidden="true"></i>Back</button>',
@@ -28,10 +28,10 @@
 										 	'<div class="col-xs-12 main-label">Comments or Special Requests</div>',
 										 	'<div class="col-xs-12">',
                      		'<label>Comments</label>',
-                     		'<textarea  rows="8"  ng-model="laundryCtrl.comments"  type="text" class="form-control"></textarea>',
+                     		'<textarea  rows="8"  ng-model="laundryCtrl.order.comments"  type="text" class="form-control"></textarea>',
                   			'</div>',
                   			'<div class="col-xs-12">',
-                     			'<div ng-click="laundryCtrl.setAt = \'p3\' " class="btn btn-primary submit-form-butt">{{laundryCtrl.comments ? "Skip" : "Next"}}<i class="fa fa-chevron-right" aria-hidden="true"></i></div>',
+                     			'<div ng-click="laundryCtrl.setAt = \'p3\' " class="btn btn-primary submit-form-butt">{{laundryCtrl.order.comments ? "Skip" : "Next"}}<i class="fa fa-chevron-right" aria-hidden="true"></i></div>',
                  			 	'</div>',
 											 	'</div>',
 												'<div ng-show="laundryCtrl.setAt === \'p3\' " class="order-wrap order-part2">',
@@ -63,14 +63,18 @@
   
   
   function innitRest(){
-  	laundryCtrl.comments = '';
-	  laundryCtrl.socks = 0;
-	  laundryCtrl.shirts = 0;
-	  laundryCtrl.underwear = 0;
-	  laundryCtrl.pants = 0;
-	  laundryCtrl.fancyshirts = 0;
-	  laundryCtrl.suits = 0;
-	  laundryCtrl.total = 0.0;
+  	laundryCtrl.order = {};
+  	laundryCtrl.customer = {};
+  	laundryCtrl.address = {};
+  	laundryCtrl.order.comments = '';
+  	laundryCtrl.order.company_id = $stateParams.id;
+	  laundryCtrl.order.socks = 0;
+	  laundryCtrl.order.shirts = 0;
+	  laundryCtrl.order.underwear = 0;
+	  laundryCtrl.order.pants = 0;
+	  laundryCtrl.order.fancyshirts = 0;
+	  laundryCtrl.order.suits = 0;
+	  laundryCtrl.order.total = 0.0;
 	  var priceList = _laundryTemplate.keylist.reduce(function(obj,itm){
 				  						 obj[itm[0]] = laundryCtrl.thisCompany[itm[1]];
 				  						 return obj;
@@ -94,25 +98,32 @@
 	  
 	  laundryCtrl.orderSet = function(bool){
 	  	console.log(bool);
+	
+	  	laundryCtrl.order.type = bool ? 'Delivery' : 'Pickup';
+	 
 	  	document.getElementById('mainForm').style.display = 'none';
-	  	document.getElementById('adFrm').className = 'address-form';
-	  	laundryCtrl.blockSet = 'laundry set-end';
+	  	var section = document.getElementById('laundryBlock');
+	  	section.className = 'laundry form-last';
+	  	section.querySelector('#adFrm').className = 'address-form';
+	  	
 	  };
 
 	  laundryCtrl.tap = function($event){
 	  	
 	  	var item = $event.target.dataset.tp;
 	  	if(item){
-	  		laundryCtrl[item] += 1;
-	  		laundryCtrl.total =  totalPrice();
+	  		laundryCtrl.order[item] += 1;
+	  		laundryCtrl.order.total =  totalPrice();
 	  	}
 	  };
 	  laundryCtrl.qtySum = function(price, qty, rfkey){
-	  	laundryCtrl.total =  totalPrice();
+	  	laundryCtrl.order.total =  totalPrice();
 	  	return  parseFloat(price) * parseInt(qty);
 	  };
 	  laundryCtrl.getLaundryList = function(){
-	      console.log('laundryCtrl.laundry',laundryCtrl.thisCompany);
+	      console.log('laundryCtrl.order',laundryCtrl.order);
+	      console.log('laundryCtrl.customer',laundryCtrl.customer);
+	      console.log('laundryCtrl.address',laundryCtrl.address);
 	  };
 	 
  	};

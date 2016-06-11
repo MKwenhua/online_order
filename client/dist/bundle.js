@@ -40725,8 +40725,8 @@ var clothesHTML = {
 									  	 	'<div class="is-real" ng-click="laundryCtrl.tap($event)" >',
 														'<laundry-pick></laundry-pick>',
 												'</div>',
-												'<div class="row-center-title row-margin-20">Total of {{laundryCtrl.total | currency:"£":2}}</div>',
-												'<button ng-click="laundryCtrl.setAt = \'p2\' " type="submit" class="btn btn-primary submit-form-butt">Comfirm</button>',			 
+												'<div class="row-center-title row-margin-20">Total of {{laundryCtrl.order.total | currency:"£":2}}</div>',
+												'<button ng-click="laundryCtrl.setAt = \'p2\' " class="btn btn-primary submit-form-butt">Comfirm</button>',			 
 										'</div>',
 										'<div id="commentArea" ng-show="laundryCtrl.setAt === \'p2\' " class="order-wrap order-part3">',
 										 	'<button ng-click="laundryCtrl.setAt = \'p1\' " class="go-back redish-button"><i class="fa fa-chevron-left" aria-hidden="true"></i>Back</button>',
@@ -40734,10 +40734,10 @@ var clothesHTML = {
 										 	'<div class="col-xs-12 main-label">Comments or Special Requests</div>',
 										 	'<div class="col-xs-12">',
                      		'<label>Comments</label>',
-                     		'<textarea  rows="8"  ng-model="laundryCtrl.comments"  type="text" class="form-control"></textarea>',
+                     		'<textarea  rows="8"  ng-model="laundryCtrl.order.comments"  type="text" class="form-control"></textarea>',
                   			'</div>',
                   			'<div class="col-xs-12">',
-                     			'<div ng-click="laundryCtrl.setAt = \'p3\' " class="btn btn-primary submit-form-butt">{{laundryCtrl.comments ? "Skip" : "Next"}}<i class="fa fa-chevron-right" aria-hidden="true"></i></div>',
+                     			'<div ng-click="laundryCtrl.setAt = \'p3\' " class="btn btn-primary submit-form-butt">{{laundryCtrl.order.comments ? "Skip" : "Next"}}<i class="fa fa-chevron-right" aria-hidden="true"></i></div>',
                  			 	'</div>',
 											 	'</div>',
 												'<div ng-show="laundryCtrl.setAt === \'p3\' " class="order-wrap order-part2">',
@@ -40769,14 +40769,18 @@ var clothesHTML = {
   
   
   function innitRest(){
-  	laundryCtrl.comments = '';
-	  laundryCtrl.socks = 0;
-	  laundryCtrl.shirts = 0;
-	  laundryCtrl.underwear = 0;
-	  laundryCtrl.pants = 0;
-	  laundryCtrl.fancyshirts = 0;
-	  laundryCtrl.suits = 0;
-	  laundryCtrl.total = 0.0;
+  	laundryCtrl.order = {};
+  	laundryCtrl.customer = {};
+  	laundryCtrl.address = {};
+  	laundryCtrl.order.comments = '';
+  	laundryCtrl.order.company_id = $stateParams.id;
+	  laundryCtrl.order.socks = 0;
+	  laundryCtrl.order.shirts = 0;
+	  laundryCtrl.order.underwear = 0;
+	  laundryCtrl.order.pants = 0;
+	  laundryCtrl.order.fancyshirts = 0;
+	  laundryCtrl.order.suits = 0;
+	  laundryCtrl.order.total = 0.0;
 	  var priceList = _laundryTemplate.keylist.reduce(function(obj,itm){
 				  						 obj[itm[0]] = laundryCtrl.thisCompany[itm[1]];
 				  						 return obj;
@@ -40800,25 +40804,32 @@ var clothesHTML = {
 	  
 	  laundryCtrl.orderSet = function(bool){
 	  	console.log(bool);
+	
+	  	laundryCtrl.order.type = bool ? 'Delivery' : 'Pickup';
+	 
 	  	document.getElementById('mainForm').style.display = 'none';
-	  	document.getElementById('adFrm').className = 'address-form';
-	  	laundryCtrl.blockSet = 'laundry set-end';
+	  	var section = document.getElementById('laundryBlock');
+	  	section.className = 'laundry form-last';
+	  	section.querySelector('#adFrm').className = 'address-form';
+	  	
 	  };
 
 	  laundryCtrl.tap = function($event){
 	  	
 	  	var item = $event.target.dataset.tp;
 	  	if(item){
-	  		laundryCtrl[item] += 1;
-	  		laundryCtrl.total =  totalPrice();
+	  		laundryCtrl.order[item] += 1;
+	  		laundryCtrl.order.total =  totalPrice();
 	  	}
 	  };
 	  laundryCtrl.qtySum = function(price, qty, rfkey){
-	  	laundryCtrl.total =  totalPrice();
+	  	laundryCtrl.order.total =  totalPrice();
 	  	return  parseFloat(price) * parseInt(qty);
 	  };
 	  laundryCtrl.getLaundryList = function(){
-	      console.log('laundryCtrl.laundry',laundryCtrl.thisCompany);
+	      console.log('laundryCtrl.order',laundryCtrl.order);
+	      console.log('laundryCtrl.customer',laundryCtrl.customer);
+	      console.log('laundryCtrl.address',laundryCtrl.address);
 	  };
 	 
  	};
@@ -40849,20 +40860,20 @@ var clothesHTML = {
 var _laundryTemplate = (function(){
 	function objectConstructor(){
 
-	function formBuilder (icon, itemtype, ctrlcall, itemName) {
+	function formBuilder (icon, itemtype, ctrlcall, itemName) { 
 		return [
 		'<div class="clothes-item" >',
 		  '<div data-tp="',itemtype,'" class="clothes-type-butt inline-item">',
 					'<img data-tp="',itemtype,'" width="30" height="30" ng-src="https://canvasmp3.s3.amazonaws.com/',icon,'">',
 			'</div>',
 			'<div class="price-input inline-item">',
-	    		'<input name="',itemtype,'" type="number" ng-model="laundryCtrl.',itemtype,'" class="form-control" value="0" min="0" max="99">',
+	    		'<input name="',itemtype,'" type="number" ng-model="laundryCtrl.order.',itemtype,'" class="form-control" value="0" min="0" max="99">',
 	    '</div>',
 			'<div class="cost-dis inline-item">',
 					'<span class="cost-per">',itemName,'</span><span>{{',ctrlcall,' | currency:"£":2}}</span><span>per unit</span>',
 	    '</div>',
 	    '<div class="inline-item total-price">',
-	    	 '{{laundryCtrl.',itemtype,' + " : "}} {{ laundryCtrl.qtySum(',ctrlcall,', laundryCtrl.',itemtype,', ',itemtype,') | currency:"£":2 }}',
+	    	 '{{laundryCtrl.order.',itemtype,' + " : "}} {{ laundryCtrl.qtySum(',ctrlcall,', laundryCtrl.order.',itemtype,', ',itemtype,') | currency:"£":2 }}',
 	    '</div>',
 	  '</div>'].join('');
 	
@@ -40888,51 +40899,64 @@ var _laundryTemplate = (function(){
 	            'Place Your Order',
 	         '</div>',
 	         '<div class="row">',
-	            '<div class="col-xs-12 main-label">',
-	               'Customer Information',
-	            '</div>',
-	            '<div class="col-xs-12">',
-	               '<label>Name</label>',
-	               '<input type="text" class="form-control"  required value=" "/>',
-	            '</div>',
+            '<div class="col-xs-12 main-label">',
+               'Customer Information',
+            '</div>',
+            '<div class="col-xs-12">',
+               '<label>Name</label>',
+               '<input type="text" class="form-control" ng-model="laundryCtrl.customer.name"   />',
+            '</div>',
+            '<div class="col-xs-12">',
+               '<label>Email</label>',
+                   '<input type="email" class="form-control" ng-model="laundryCtrl.customer.email" />',
+                '</div>',
+                '<div class="padder"></div>',
+                '<div class="col-xs-3">',
+                   '<label>Area</label>',
+                   '<input type="text" class="form-control" ng-model="laundryCtrl.customer.ph.areacode"/>',
+             		'</div>',
+                '<div class="col-xs-9">',
+                   '<label>Phone Number</label>',
+                   '<input type="text" class="form-control" ng-model="laundryCtrl.customer.ph.phone"  />',
+                '</div>',
 	         '</div>',
 	         '<div class="row">',
 	            '<div class="padder"></div>',
 	            '<div class="col-xs-9">',
 	               '<label>Street Address</label>',
-	               '<input type="text" class="form-control" required  value=" "/>',
+	               '<input type="text" class="form-control" ng-model="laundryCtrl.address.street"    />',
 	            '</div>',
 	            '<div class="col-xs-3">',
 	               '<label>Unit #</label>',
-	               '<input type="text" class="form-control" value=" " id="aptLoc"  />',
+	               '<input type="text" class="form-control" ng-model="laundryCtrl.address.aptno"  id="aptLoc"  />',
 	            '</div>',
 	         '</div>',
 	         '<div class="row">',
 	            '<div class="padder"></div>',
 	            '<div class="col-xs-7">',
 	               '<label>City</label>',
-	               '<input type="text" class="form-control" id="cityLoc"  value=" "/>',
+	               '<input type="text" class="form-control" ng-model="laundryCtrl.address.city" id="cityLoc" />',
 	            '</div>',
 	            '<div class="col-xs-2">',
 	               '<label>State</label>',
-	               '<input type="text" class="form-control"  value=" " />',
+	               '<input type="text" class="form-control" ng-model="laundryCtrl.address.state"   />',
 	            '</div>',
 	            '<div class="col-xs-3">',
 	               '<label>Zip Code</label>',
-	               '<input type="text" class="form-control"  value=" " />',
+	               '<input type="text" class="form-control" ng-model="laundryCtrl.address.zip"  />',
 	            '</div>',
 	         '</div>',
 	         '<hr>',
 	         '<div id="pickupDate" class="row">',
 	            '<div class="col-xs-5 col-change">',
 	               '<label>Date</label>',
-	               '<input type="date" id="datePick" class="form-control" ng-model="dateString"  name="pickup"  value=" ">',
+	               '<input type="date" id="datePick" class="form-control" ng-model="laundryCtrl.pickup"  name="pickup"  >',
 	            '</div>',
 	         '</div>',
 	         '<hr>',
 	         '<div class="row">',
 	            '<div class="col-xs-12">',
-	               '<div id="saveLoc" class="btn btn-primary submit-form-butt">Place Order</div>',
+	               '<div id="saveLoc" type="submit"  class="btn btn-primary submit-form-butt">Place Order</div>',
 	            '</div>',
 	         '</div>',
 	      '</div>',
