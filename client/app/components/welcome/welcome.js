@@ -50,7 +50,7 @@ angular.module('welcome', [])
 		  	initCtrl.closeBy.mapResults(dta);  	
 		  });
 		 }
-
+		
   initCtrl.geo = GeoLocMethods(latLngStr);
 })
 .directive('drycleanersNearby', function() {

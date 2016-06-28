@@ -44,11 +44,20 @@
     .order-wrap {
         margin-top: 0;
     }
+
 }
 @media only screen and (max-width: 750px) {
     .laundry > h2 {
         margin-top: 10px;
         color: #525252;
+    }
+    [class*="col-"]{
+     padding-right: 3px;
+    padding-left: 3px;
+    }
+    .row{
+    margin-right: -5px;
+    margin-left: -5px;
     }
     #businessName {
         width: 100vw;
@@ -56,12 +65,22 @@
         margin-left: -8px;
         background-color: #232531;
     }
+    #commentArea > .row-center-title{
+    	display: none;
+    }
+    #commentArea > .main-label{
+    	    text-align: center!important;
+    }
     #businessName h2 {
         margin-top: 15px;
         color: #26debd;
         font-size: 20px;
         padding-top: 0px;
         padding-bottom: 0px;
+    }
+    .go-back{
+    	padding: 3px 15px;
+    	position: relative;
     }
     .box-wrap {
         box-shadow: none;

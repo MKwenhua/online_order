@@ -2,4 +2,5 @@
 .img-container-inline img{
 	vertical-align: top;
 	height:60px;
+	border-radius: 3px;
 }

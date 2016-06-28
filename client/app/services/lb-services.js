@@ -1846,6 +1846,14 @@ module.factory(
          * This usually means the response is a `Customers` object.)
          * </em>
          */
+         "orderForPickup": {
+          url: urlBase + "/customers/orderForPickup",
+          method: "POST"
+        },
+        "getCustomersId": {
+          url: urlBase + "/customers/getCustomersId",
+          method: "POST"
+        },
         "createMany": {
           isArray: true,
           url: urlBase + "/customers",

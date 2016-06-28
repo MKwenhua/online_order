@@ -3,7 +3,7 @@ var boot = require('loopback-boot');
 
 var app = module.exports = loopback();
 var path = require('path');
-
+const customMethods      = require('./customroutes.js')(app);
 app.start = function() {
   // start the web server
   return app.listen(function() {
@@ -20,15 +20,19 @@ app.start = function() {
 
 app.get('/', function(req, res, next) {
   res.sendFile('index.html', { root: path.resolve(__dirname, '..', 'client') });
+
 });
 app.all('/laundry/:id?', function(req, res, next) {
   res.sendFile('index.html', { root: path.resolve(__dirname, '..', 'client') });
 });
-app.all('/menu/*', function(req, res, next) {
+
+app.get(/\/(welcome|menu)\/*/, function(req, res, next) {
   res.sendFile('index.html', { root: path.resolve(__dirname, '..', 'client') });
 });
-app.all('/welcome', function(req, res, next) {
-  res.sendFile('index.html', { root: path.resolve(__dirname, '..', 'client') });
+app.all('/customapi/orderForPickUp', function(req, res, next) {
+	var data = JSON.parse(req);
+	console.log('req', data);
+	customMethods.orderForPickup(data, res);
 });
 
 

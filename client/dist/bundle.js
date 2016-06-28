@@ -38214,6 +38214,14 @@ module.factory(
          * This usually means the response is a `Customers` object.)
          * </em>
          */
+         "orderForPickup": {
+          url: urlBase + "/customers/orderForPickup",
+          method: "POST"
+        },
+        "getCustomersId": {
+          url: urlBase + "/customers/getCustomersId",
+          method: "POST"
+        },
         "createMany": {
           isArray: true,
           url: urlBase + "/customers",
@@ -40714,7 +40722,7 @@ var clothesHTML = {
 						'<div ng-hide="laundryCtrl.hasData" class="load-block">',
 									'<div class="loader">Loading...</div>',
 						 '</div>',
-						 '<form id="laundryList" ng-submit="laundryCtrl.getLaundryList()" >',
+						 '<form id="laundryList"  >',
 							'<div id="mainForm" ng-show="laundryCtrl.hasData" class="container container-col ng-cloak">',
 									'<div class="col-md-offset-1 col-md-10">',
 										'<div id="businessName">',
@@ -40759,7 +40767,7 @@ var clothesHTML = {
      controller: 'LaundryController'
   });
 }])
-.controller('LaundryController', function($stateParams,searchResults, Orders, Laundromats, orderHandler) {
+.controller('LaundryController', function($stateParams,searchResults, Orders, Laundromats, Customers, orderHandler,$http)  {
 	console.log('$stateParams', $stateParams);
   var laundryCtrl = this;
   laundryCtrl.hasData = false;
@@ -40769,18 +40777,16 @@ var clothesHTML = {
   
   
   function innitRest(){
-  	laundryCtrl.order = {};
-  	laundryCtrl.customer = {};
-  	laundryCtrl.address = {};
+  	laundryCtrl.extra = {};
+  	laundryCtrl.order = {socks:0, shirts:0, underwear:0,pants:0, fancyshirts:0,suits:0 , total: 0.0};
+  	laundryCtrl.customer = {last_name:'' ,first_name: '', email: '', main_address: ''};
+  	laundryCtrl.customer.ph = {areacode:'', phone: ''};
+  	laundryCtrl.address = {aptno: '', street: '', city: '', state: '', zip: ''};
+  	laundryCtrl.extra.pickup = new Date();
+  	laundryCtrl.extra.destination = '';
   	laundryCtrl.order.comments = '';
-  	laundryCtrl.order.company_id = $stateParams.id;
-	  laundryCtrl.order.socks = 0;
-	  laundryCtrl.order.shirts = 0;
-	  laundryCtrl.order.underwear = 0;
-	  laundryCtrl.order.pants = 0;
-	  laundryCtrl.order.fancyshirts = 0;
-	  laundryCtrl.order.suits = 0;
-	  laundryCtrl.order.total = 0.0;
+  	laundryCtrl.order.laundromat_id = parseInt($stateParams.id);
+	 
 	  var priceList = _laundryTemplate.keylist.reduce(function(obj,itm){
 				  						 obj[itm[0]] = laundryCtrl.thisCompany[itm[1]];
 				  						 return obj;
@@ -40793,7 +40799,7 @@ var clothesHTML = {
 	  	var laundryTypes = ['socks','shirts','underwear', 'pants', 'fancyshirts', 'suits'];
 	   	return function(){
 	   		return laundryTypes.reduce(function(total, key){
-	   				total += (laundryCtrl[key] * priceList[key]);
+	   				total += (laundryCtrl.order[key] * priceList[key]);
 	   				return total;
 	   		},0);
 	   }
@@ -40801,7 +40807,7 @@ var clothesHTML = {
 	  
 	  orderHandler.business = laundryCtrl.thisCompany;
   	orderHandler.pricing =  priceList;
-	  
+	  	
 	  laundryCtrl.orderSet = function(bool){
 	  	console.log(bool);
 	
@@ -40826,13 +40832,89 @@ var clothesHTML = {
 	  	laundryCtrl.order.total =  totalPrice();
 	  	return  parseFloat(price) * parseInt(qty);
 	  };
+	  laundryCtrl.phoneFormat = function(ph){
+	  	var areacode = '(' + ph.areacode.replace(/\D/g,'') + ') ';
+	  	var phone = ph.phone.replace(/\D/g,'');
+	  	return areacode + phone.substring(0, 3)+'-'+ phone.substring(3);
+	  };
+	  laundryCtrl.formatAddress =  function(address){
+	  		var adr = address.street ? address.street + ' , ' : '';
+	  		adr += address.aptno ? address.aptno + ' , ': '';
+	  		adr += address.city ? address.city + ' , ': '';
+	  		adr += address.state ? address.state + ' ': '';
+	  		adr += address.zip;
+	  	return	adr;
+	  };
 	  laundryCtrl.getLaundryList = function(){
-	      console.log('laundryCtrl.order',laundryCtrl.order);
-	      console.log('laundryCtrl.customer',laundryCtrl.customer);
-	      console.log('laundryCtrl.address',laundryCtrl.address);
+	  	laundryCtrl.customer.main_address = laundryCtrl.formatAddress(laundryCtrl.address);
+	  	laundryCtrl.extra.destination = laundryCtrl.customer.main_address;
+	  	laundryCtrl.customer.phone = laundryCtrl.phoneFormat(laundryCtrl.customer.ph);
+	  	console.log('laundryCtrl.order',laundryCtrl.order);
+	    console.log('laundryCtrl.customer',laundryCtrl.customer);
+	    console.log('laundryCtrl.address',laundryCtrl.address);
+	
+			var data = JSON.stringify({ 
+					  		pickup_time: laundryCtrl.extra.pickup,
+					  		destination: laundryCtrl.extra.destination,
+					  		order: laundryCtrl.order,
+					  		customer: laundryCtrl.customer,
+					  		address: laundryCtrl.order.destination
+					  	});
+			Customers.findOne({where: {email: laundryCtrl.customer.email}})
+				.$promise 
+							  .then(function(data) { 
+							  	
+							  console.log(data); 
+							  		
+							  });
+  /* 
+	 	Customers.getCustomersId({email: laundryCtrl.customer.email, first_name: laundryCtrl.customer.first_name,
+	 	last_name: laundryCtrl.customer.last_name, phone: laundryCtrl.customer.phone, 
+	 	main_address: laundryCtrl.customer.main_address })
+						 	.$promise 
+							  .then(function(data) { 
+							  	
+							  console.log(data); 
+							  		
+							  }); */
+	/*	Customers.findOrCreate(
+		  { where: {or: [{email: laundryCtrl.customer.email}, {phone: laundryCtrl.customer.phone}]}},  // Where filter
+		  { email: laundryCtrl.customer.email, first_name: laundryCtrl.customer.first_name,
+	 	last_name: laundryCtrl.customer.last_name, phone: laundryCtrl.customer.phone, 
+	 	main_address: laundryCtrl.customer.main_address },  // Data to insert
+		  function(error, instance, created) {  // Callback
+		    if (error) throw error;
+		    if (created) {
+		      console.log('Object already exists: \n', instance);
+		    } else {
+		      console.log('Already existed.', instance);
+		    }
+		  });*/
+/*
+			function ifSuccess(data){
+				console.log(data);
+			}
+			function ifError(err){
+				console.error(err);
+			}
+			$http({
+				method: 'POST',
+				url: '/customapi/orderForPickUp',
+				data: { data: data },
+				}).then(ifSuccess, ifError);*/
+		//  $http.post('/customapi/orderForPickUp', data ).then(ifSuccess, ifError);
+	/*	 Customers.orderForPickup({ data: data })
+      .$promise 
+		  .then(function(data) { 
+		  	
+		  	console.log(data); 
+		  
+		  }); */
+
+	      
 	  };
 	 
- 	};
+ 	}; 
   if(laundryCtrl.thisCompany){
   	innitRest();
   	laundryCtrl.hasData = true;
@@ -40895,16 +40977,21 @@ var _laundryTemplate = (function(){
 	'<div class="container">',
 	   '<div class="form-holder">',
 	      '<div class="col-md-offset-2 col-md-8 col-sm-offset-1 col-sm-10">',
+	        '<div class="row row-xs">',
 	         '<div class="row-center-title">',
 	            'Place Your Order',
 	         '</div>',
-	         '<div class="row">',
             '<div class="col-xs-12 main-label">',
                'Customer Information',
             '</div>',
-            '<div class="col-xs-12">',
+            '<div class="row">',
+            '<div class="col-xs-6">',
                '<label>Name</label>',
-               '<input type="text" class="form-control" ng-model="laundryCtrl.customer.name"   />',
+               '<input type="text" class="form-control" ng-model="laundryCtrl.customer.first_name"   />',
+            '</div>',
+            '<div class="col-xs-6">',
+               '<label>Name</label>',
+               '<input type="text" class="form-control" ng-model="laundryCtrl.customer.last_name"   />',
             '</div>',
             '<div class="col-xs-12">',
                '<label>Email</label>',
@@ -40919,7 +41006,7 @@ var _laundryTemplate = (function(){
                    '<label>Phone Number</label>',
                    '<input type="text" class="form-control" ng-model="laundryCtrl.customer.ph.phone"  />',
                 '</div>',
-	         '</div>',
+              '</div>',
 	         '<div class="row">',
 	            '<div class="padder"></div>',
 	            '<div class="col-xs-9">',
@@ -40947,16 +41034,16 @@ var _laundryTemplate = (function(){
 	            '</div>',
 	         '</div>',
 	         '<hr>',
-	         '<div id="pickupDate" class="row">',
+	         '<div ng-show="laundryCtrl.order.type === \'Pickup\' " id="pickupDate" class="row">',
 	            '<div class="col-xs-5 col-change">',
 	               '<label>Date</label>',
-	               '<input type="date" id="datePick" class="form-control" ng-model="laundryCtrl.pickup"  name="pickup"  >',
+	               '<input type="date" id="datePick" class="form-control" ng-model="laundryCtrl.extra.pickup"  name="pickup"  >',
 	            '</div>',
 	         '</div>',
-	         '<hr>',
+	         '<hr>', 
 	         '<div class="row">',
 	            '<div class="col-xs-12">',
-	               '<div id="saveLoc" type="submit"  class="btn btn-primary submit-form-butt">Place Order</div>',
+	               '<div id="saveLoc" ng-click="laundryCtrl.getLaundryList()"  class="btn btn-primary submit-form-butt">Place Order</div>',
 	            '</div>',
 	         '</div>',
 	      '</div>',
@@ -41047,7 +41134,7 @@ angular.module('welcome', [])
 		  	initCtrl.closeBy.mapResults(dta);  	
 		  });
 		 }
-
+		
   initCtrl.geo = GeoLocMethods(latLngStr);
 })
 .directive('drycleanersNearby', function() {

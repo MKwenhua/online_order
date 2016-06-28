@@ -1,6 +1,8 @@
 {
   "name": "orders",
   "plural": "orders",
+   "dataSource": "pgsqldb",
+  "public": true,
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
@@ -89,7 +91,14 @@
     }
   },
   "validations": [],
-  "relations": {},
-  "acls": [],
+  
+  "acls": [
+ {
+            "principalType": "ROLE",
+            "principalId": "$everyone",
+            "permission": "ALLOW",
+            "accessType": "*"
+        }
+  ],
   "methods": {}
 }

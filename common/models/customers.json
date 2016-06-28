@@ -44,7 +44,13 @@
     }
   },
   "validations": [],
-  "relations": {},
-  "acls": [],
+  "acls": [
+ {
+            "principalType": "ROLE",
+            "principalId": "$everyone",
+            "permission": "ALLOW",
+            "accessType": "*"
+        }
+  ],
   "methods": {}
 }

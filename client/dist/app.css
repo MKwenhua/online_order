@@ -424,7 +424,7 @@ textarea {
     height: auto;
 }
 .form-holder {
-    margin-top: 60px;
+    margin-top: 10px;
     letter-spacing: 0.7px;
     margin-bottom: 60px;
 }
@@ -615,7 +615,7 @@ textarea {
     height: 100vh;
     margin: 0;
     padding: 0;
-    background-color: #fff;
+ /*   background-color: #fff; */
     text-align: center;
 }
 #welcome.setup {
@@ -657,9 +657,15 @@ textarea {
     border: 1px solid silver;
     text-decoration: none;
     color: #525252!important;
+        border-radius: 3px;
+    background: white;
+    border: 1px solid white;
+}
 }
 #nearbyList a:hover {
-    background-color: yellow;
+       border: 1px solid #26debd;
+    color: #26debd;
+    background: white;
 }
 .info-inline {
     padding: 8px;
@@ -677,6 +683,7 @@ textarea {
 .img-container-inline img{
 	vertical-align: top;
 	height:60px;
+	border-radius: 3px;
 }
 [ng\:cloak], [ng-cloak], .ng-cloak {
 	display: none;
@@ -727,11 +734,20 @@ textarea {
     .order-wrap {
         margin-top: 0;
     }
+
 }
 @media only screen and (max-width: 750px) {
     .laundry > h2 {
         margin-top: 10px;
         color: #525252;
+    }
+    [class*="col-"]{
+     padding-right: 3px;
+    padding-left: 3px;
+    }
+    .row{
+    margin-right: -5px;
+    margin-left: -5px;
     }
     #businessName {
         width: 100vw;
@@ -739,12 +755,22 @@ textarea {
         margin-left: -8px;
         background-color: #232531;
     }
+    #commentArea > .row-center-title{
+    	display: none;
+    }
+    #commentArea > .main-label{
+    	    text-align: center!important;
+    }
     #businessName h2 {
         margin-top: 15px;
         color: #26debd;
         font-size: 20px;
         padding-top: 0px;
         padding-bottom: 0px;
+    }
+    .go-back{
+    	padding: 3px 15px;
+    	position: relative;
     }
     .box-wrap {
         box-shadow: none;
